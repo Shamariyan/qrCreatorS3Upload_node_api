@@ -60,7 +60,6 @@ app.post('/', async (req, res, next) => {
 		])
 		.toBuffer()
 		.then((updatedBuffer) => {
-			console.log('updatedBuffer   ' + updatedBuffer);
 			const params = {
 				Bucket: 'qrcreations3upload-dev-qrimagebucket-1jbk3s9gh49fr',
 				Key: `${orderId}.png`,
@@ -68,7 +67,6 @@ app.post('/', async (req, res, next) => {
 			};
 			fs.writeFileSync('assss.png', updatedBuffer);
 			S3.upload(params, async (err, data) => {
-				console.log('🚀 ~ file: handler.js ~ line 79 ~ S3.upload ~ data', data);
 				if (err) {
 					return res.status(500).json({
 						err,
