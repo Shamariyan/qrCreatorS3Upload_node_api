@@ -73,7 +73,7 @@ app.post('/', async (req, res, next) => {
 					});
 				}
 				res.send('uploaded to S3');
-				res.send(updatedBuffer);
+				// res.send(updatedBuffer);
 				// 	let cloudFrontUrl = `https://d3rwni9jzymvdb.cloudfront.net/${orderId}.png`;
 				// 	client.connect();
 
