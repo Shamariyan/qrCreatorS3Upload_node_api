@@ -19,6 +19,8 @@ const S3 = new AWS.S3({
 // 	secretAccessKey: process.env.AWS_S3_SECRET_ACCESS_KEY,
 // });
 
+app.get('/', (req, res) => res.send(`API running on ${PORT}`));
+
 app.post('/', async (req, res, next) => {
 	//mongo db connection string
 	const uri =
