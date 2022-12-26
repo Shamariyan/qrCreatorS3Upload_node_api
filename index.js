@@ -128,5 +128,8 @@ app.post('/', async (req, res, next) => {
 });
 
 const PORT = process.env.PORT || 5000;
+const variab = process.env.VAR_VAR;
 
-app.listen(PORT, () => console.log(`SERVER Started runnning on ${PORT}`));
+app.listen(PORT, () =>
+	console.log(`SERVER (${variab}) Started runnning on ${PORT}`)
+);
