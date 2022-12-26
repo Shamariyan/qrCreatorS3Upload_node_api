@@ -19,10 +19,11 @@ const S3 = new AWS.S3({
 	secretAccessKey: process.env.AWS_S3_SECRET_ACCESS_KEY,
 });
 const varia = process.env.VAR_VAR;
+const nm = process.env.BUCKET_NAME;
 
-app.get('/', (req, res) =>
-	res.send(`API ${process.env.MONGO_URI} running on ${PORT}`)
-);
+app.get('/', (req, res) => {
+	res.send(`API ${nm} running ${varia} on ${PORT}`);
+});
 
 app.post('/', async (req, res, next) => {
 	//mongo db connection string
