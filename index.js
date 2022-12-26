@@ -10,22 +10,23 @@ const app = express();
 
 app.use(express.json());
 
-const S3 = new AWS.S3({
-	accessKeyId: 'AKIA2HXTNWNM34RUS2PR',
-	secretAccessKey: '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',
-});
 // const S3 = new AWS.S3({
-// 	accessKeyId: process.env.AWS_S3_ACCESS_KEY_ID,
-// 	secretAccessKey: process.env.AWS_S3_SECRET_ACCESS_KEY,
+// 	accessKeyId: 'AKIA2HXTNWNM34RUS2PR',
+// 	secretAccessKey: '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',
 // });
+const S3 = new AWS.S3({
+	accessKeyId: process.env.AWS_S3_ACCESS_KEY_ID,
+	secretAccessKey: process.env.AWS_S3_SECRET_ACCESS_KEY,
+});
 const varia = process.env.VAR_VAR;
 
-app.get('/', (req, res) => res.send(`API ${varia} running on ${PORT}`));
+app.get('/', (req, res) =>
+	res.send(`API ${process.env.MONGO_URI} running on ${PORT}`)
+);
 
 app.post('/', async (req, res, next) => {
 	//mongo db connection string
-	const uri =
-		'mongodb+srv://qr8_rw:GPKvFyuWjPXs9PKd@qr8code.j8eziz7.mongodb.net/?retryWrites=true&w=majority';
+	const uri = process.env.MONGO_URI;
 
 	const client = new MongoClient(uri, {
 		useNewUrlParser: true,
@@ -62,7 +63,7 @@ app.post('/', async (req, res, next) => {
 		.toBuffer()
 		.then((updatedBuffer) => {
 			const params = {
-				Bucket: 'qrcreations3upload-dev-qrimagebucket-1jbk3s9gh49fr',
+				Bucket: process.env.BUCKET_NAME,
 				Key: `${orderId}.png`,
 				Body: updatedBuffer,
 			};
