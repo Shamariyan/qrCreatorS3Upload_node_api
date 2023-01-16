@@ -90,6 +90,7 @@ app.post('/', async (req, res, next) => {
 						},
 					}
 				);
+				client.close();
 				//Calling email lambda function
 				const body = {
 					email: orderEmail,
