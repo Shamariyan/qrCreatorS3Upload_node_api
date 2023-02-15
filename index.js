@@ -118,6 +118,7 @@ app.post('/', async (req, res, next) => {
 			});
 		})
 		.catch((err) => {
+			client.close();
 			res.status(500).send(err);
 		});
 });
